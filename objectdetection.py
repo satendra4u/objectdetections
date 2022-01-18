@@ -29,14 +29,16 @@ import time
 print(tf.__version__)
 
 # Check available GPU devices.
-#print("The following GPU devices are available: %s" % tf.test.gpu_device_name())
+print("The following GPU devices are available: %s" % tf.test.gpu_device_name())
 
+#function to dislay the image
 def display_image(image):
   #fig = plt.figure(figsize=(20, 15))
   plt.grid(False)
   plt.imshow(image)
   
 
+# function to download and resixe the image 
 def download_and_resize_image(url, new_width=256, new_height=256,
                               display=False):
   _, filename = tempfile.mkstemp(suffix=".jpg")
@@ -53,7 +55,7 @@ def download_and_resize_image(url, new_width=256, new_height=256,
   return filename
 
 
-
+# functions to drawing the 
 def draw_bounding_box_on_image(image,
                                ymin,
                                xmin,
@@ -98,11 +100,13 @@ def draw_bounding_box_on_image(image,
     text_bottom -= text_height - 2 * margin
 
 
-
+# functions to draw the boxes on images to show the % match on the region inside the image.
 def draw_boxes(image, boxes, class_names, scores, max_boxes=10, min_score=0.1):
   """Overlay labeled boxes on an image with formatted scores and label names."""
   colors = list(ImageColor.colormap.values())
 
+# added and needs to be changed the fonts path inside the folder - liberation-sans-narrow_202.ttf
+  
   try:
     font = ImageFont.truetype("/users/satyen/projects/tensorflow/fonts/liberation-sans-narrow_202.ttf",
                               25)
@@ -131,7 +135,7 @@ def draw_boxes(image, boxes, class_names, scores, max_boxes=10, min_score=0.1):
 
 
 
-# By Heiko Gorski, Source: https://commons.wikimedia.org/wiki/File:Naxos_Taverna.jpg
+# By Satyendra Kumar -- The default image set it up --
 image_url = "https://devtorage.blob.core.windows.net/objectdetection/kashimir_dog.jpeg"  #@param
 downloaded_image_path = download_and_resize_image(image_url, 1280, 856, True)
 
@@ -140,13 +144,13 @@ module_handle = "https://tfhub.dev/google/faster_rcnn/openimages_v4/inception_re
 
 detector = hub.load(module_handle).signatures['default']
 
-
-
+# function to load the image
 def load_img(path):
   img = tf.io.read_file(path)
   img = tf.image.decode_jpeg(img, channels=3)
   return img
 
+# function to load the image
 def run_detector(detector, path):
   img = load_img(path)
 
@@ -167,14 +171,10 @@ def run_detector(detector, path):
   display_image(image_with_boxes)
   
 
-
+# defaults images as input --
 image_urls = [
-  # Source: https://commons.wikimedia.org/wiki/File:The_Coleoptera_of_the_British_islands_(Plate_125)_(8592917784).jpg
-  #"https://upload.wikimedia.org/wikipedia/commons/1/1b/The_Coleoptera_of_the_British_islands_%28Plate_125%29_%288592917784%29.jpg",
   "https://devtorage.blob.core.windows.net/objectdetection/cover-image-of-Valleys-In-Kashmir_18th-jan.jpeg",
-  # By Américo Toledano, Source: https://commons.wikimedia.org/wiki/File:Biblioteca_Maim%C3%B3nides,_Campus_Universitario_de_Rabanales_007.jpg
   "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Biblioteca_Maim%C3%B3nides%2C_Campus_Universitario_de_Rabanales_007.jpg/1024px-Biblioteca_Maim%C3%B3nides%2C_Campus_Universitario_de_Rabanales_007.jpg",
-  # Source: https://commons.wikimedia.org/wiki/File:The_smaller_British_birds_(8053836633).jpg
   "https://upload.wikimedia.org/wikipedia/commons/0/09/The_smaller_British_birds_%288053836633%29.jpg",
   "https://devtorage.blob.core.windows.net/objectdetection/109915-bobtapochr-1546759143.jpeg",
   "https://devtorage.blob.core.windows.net/objectdetection/164217384761e1959725c6b.jpeg",
@@ -186,7 +186,7 @@ image_urls = [
   ]
 
 
-
+# this is the initial function where it takes an input and then run the function for feature extractions and then draw the region and do the classifications. 
 def detect_img(image_url):
   start_time = time.time()
   image_path = download_and_resize_image(image_url, 640, 480)
@@ -195,7 +195,7 @@ def detect_img(image_url):
   print("Inference time:",end_time-start_time)
   
   
-  
+# detect image call to start with an input image being feed into it.
 detect_img(image_urls[5])
 
 
