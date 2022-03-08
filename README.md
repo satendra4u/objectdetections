@@ -3,7 +3,7 @@
 Faster R-CNN is a deep convolutional network used for object detection, that appears to the user as a single, end-to-end, unified network.
 The Object detection model is using faster RCNN and based on **inception_resnet model** which is improvised by tensorflow team and it is pre-trained with millions of images.The network can accurately and quickly predict the locations of different objects
 
-This model reads any image as an input and then **download and resize** it before sending to the **inception_resnet model** . Once it is sent it to the model thousands of **regions proposal (2000)**  have been generated using **selective search algorithm **inside the image. A new layer called ROI Pooling that extracts equal-length feature vectors from all proposals (i.e. ROIs) in the same image.
+This model reads any image as an input and then **download and resize** it before sending to the **inception_resnet model** . Once it is sent it to the model thousands of **regions proposal (2000)**  have been generated using **selective search algorithm** inside the image. A new layer called ROI Pooling that extracts equal-length feature vectors from all proposals (i.e. ROIs) in the same image.
 
 **Based on the inception_resnet model I have developed an alogorithm which takes input as an image and gives you the objects' region in box inside images and predicts / classify various objects inside the image.
 **
