@@ -5,10 +5,10 @@ The Object detection model is using faster RCNN and based on **inception_resnet 
 
 This model reads any image as an input and then **download and resize** it before sending to the **inception_resnet model** . Once it is sent it to the model thousands of **regions proposal (2000)**  have been generated using **selective search algorithm** inside the image. A new layer called ROI Pooling that extracts equal-length feature vectors from all proposals (i.e. ROIs) in the same image.
 
-**Based on the inception_resnet model I have developed an alogorithm which takes input as an image and gives you the objects' region in box inside images and predicts / classify various objects inside the image.
-**
+**Based on the inception_resnet model** I have developed an alogorithm which takes input as an image and gives you the objects' region in box inside images and predicts / classify various objects inside the image.
 
-I have simplified the algorithm so that any developer can run it by using tensor flow env and tensorflow_hub. It is pretty simple code with few functions mentioned below.
+
+I have **simplified the algorithm** so that any developer can run it by using tensor flow env and tensorflow_hub. It is pretty simple code with few functions mentioned below.
 
 The code is in github repo:
 
@@ -53,9 +53,9 @@ Below are the steps which demonstarte how the ROI pooling layer works in the fas
 
 
 
-Lets talk about RPN which is the main differentiating factor between Fast RCNN and Faster RCNN model, in fast RCNN or RCNN model the biggest challange was to come up regions proposals faster and pass on to connected layer to define the feature vectors and then pass on to CNN to classify those regions. To come up with the faster approach for region proposals. Below is one of the faster approach: 
+Lets talk about **RPN** which is the main differentiating factor between **Fast RCNN and Faster RCNN model**, in **fast RCNN or RCNN model** the biggest challange was to come up regions proposals faster and pass on to **connected layer to define the feature vectors** and then pass on to CNN to classify those regions. To come up with the faster approach for region proposals. Below is one of the better approach: 
 
-Proposing region proposal network (RPN) which is a fully convolutional network that generates proposals with various scales and aspect ratios. The RPN implements the terminology of neural network with attention to tell the object detection (Fast R-CNN) where to look.
+Proposing **region proposal network (RPN)** which is a **fully convolutional network** that generates proposals with various scales and aspect ratios. The RPN implements the terminology of **neural network** with attention to tell the **object detection (Fast R-CNN)** where to look.
 
 Rather than using pyramids of images (i.e. multiple instances of the image but at different scales) or pyramids of filters (i.e. multiple filters with different sizes), there is a concept of anchor boxes. An anchor box is a reference box of a specific scale and aspect ratio. With multiple reference anchor boxes, then multiple scales and aspect ratios exist for the single region. This can be thought of as a pyramid of reference anchor boxes. Each region is then mapped to each reference anchor box, and thus detecting objects at different scales and aspect ratios.
 
